@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "testdy/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.put({\n        TableName: 'New',\n        Item: { 'Name': 'test_name', 'ID': 1 }\n    }).promise().then(function (data) {\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New'\n        , ExpressionAttributeValues: { 'Name': 'test_name' }\n    }).promise().then(function (data) {\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n",
         "triggers": [
           {
             "resourceName": "apigusEast1TestAPIhead",
@@ -86,24 +86,23 @@
         "type": "DynamoDB",
         "config": {
           "mode": 0,
-          "operation": "put",
+          "operation": "query",
           "table": {
             "arn": "",
             "name": "New",
             "partitionKey": "ID",
             "partitionKeyType": "N",
             "hasSortKey": false,
-            "sortKey": "ID",
-            "sortKeyType": "N",
+            "sortKey": "",
+            "sortKeyType": "S",
             "mode": 0
           },
           "parameters": {
             "Key": {},
-            "Item": {
-              "Name": "test_name",
-              "ID": 1
-            },
-            "ExpressionAttributeValues": {}
+            "Item": {},
+            "ExpressionAttributeValues": {
+              ":Name": "test_name"
+            }
           },
           "validator": {
             "validatableFields": {},
@@ -136,7 +135,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1546862923014
+    "lastSave": 1546863070957
   },
   "VCS_STATE": {
     "provider": "GitHub",
