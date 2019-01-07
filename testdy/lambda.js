@@ -4,7 +4,7 @@ const ddb = new AWS.DynamoDB.DocumentClient();
 exports.handler = function (event, context, callback) {
     ddb.put({
         TableName: 'New',
-        Item: { 'ID': 1, 'Name': 'test' }
+        Item: { 'Name': 'test_name', 'ID': 1 }
     }).promise().then(function (data) {
         //your logic goes here
     }).catch(function (err) {
