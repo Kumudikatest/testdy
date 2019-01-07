@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "testdy/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New',\n        ExpressionAttributeValues: {\n            ':Name': 'test_name'\n        }\n    }).promise().then(function (data) {\n        console.log(data);\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n        console.log(err);\n    });\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New',\n        ExpressionAttributeValues: {\n            ':Name': 'test_name',\n            ':ID': 1\n        }\n    }).promise().then(function (data) {\n        console.log(data);\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n        console.log(err);\n    });\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "triggers": [
           {
             "resourceName": "apigusEast1TestAPIhead",
@@ -70,7 +70,8 @@
           "parameters": {
             "TableName": "New",
             "ExpressionAttributeValues": {
-              ":Name": "test_name"
+              ":Name": "test_name",
+              ":ID": 1
             }
           },
           "validator": {
@@ -134,7 +135,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1546861983302
+    "lastSave": 1546862132037
   },
   "VCS_STATE": {
     "provider": "GitHub",

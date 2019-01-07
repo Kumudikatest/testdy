@@ -5,7 +5,8 @@ exports.handler = function (event, context, callback) {
     ddb.query({
         TableName: 'New',
         ExpressionAttributeValues: {
-            ':Name': 'test_name'
+            ':Name': 'test_name',
+            ':ID': 1
         }
     }).promise().then(function (data) {
         console.log(data);
