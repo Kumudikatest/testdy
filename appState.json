@@ -1,0 +1,145 @@
+{
+  "EDITOR_STATE": {
+    "allProjectFiles": {
+      "53457d68-e7e5-48b9-bf01-00f730292deb": {
+        "id": "53457d68-e7e5-48b9-bf01-00f730292deb",
+        "parent": null,
+        "name": "testdy",
+        "type": "DIRECTORY",
+        "isDirectory": true,
+        "children": [
+          "a30ba59a-4fc2-4414-8b55-c985bc6642b0"
+        ],
+        "isRemovable": false,
+        "filePath": "testdy"
+      },
+      "a30ba59a-4fc2-4414-8b55-c985bc6642b0": {
+        "id": "a30ba59a-4fc2-4414-8b55-c985bc6642b0",
+        "parent": "53457d68-e7e5-48b9-bf01-00f730292deb",
+        "name": "lambda.js",
+        "type": "LAMBDA_FILE",
+        "isDirectory": false,
+        "children": [],
+        "isRemovable": true,
+        "filePath": "testdy/lambda.js",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New'\n    }).promise().then(function (data) {\n        console.log(data);\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n        console.log(err);\n    });\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "triggers": [
+          {
+            "resourceName": "apigusEast1TestAPIhead",
+            "config": {}
+          }
+        ],
+        "config": {
+          "runtime": "nodejs8.10",
+          "timeout": 60,
+          "memory": 128
+        },
+        "testCases": {
+          "a548d985-f609-47d0-a247-b5b578192caf": {
+            "id": "a548d985-f609-47d0-a247-b5b578192caf",
+            "name": "Unnamed event",
+            "functionId": "a30ba59a-4fc2-4414-8b55-c985bc6642b0",
+            "event": "{\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"key3\": \"value3\"\n}"
+          }
+        }
+      }
+    },
+    "deletedFiles": [],
+    "rootNode": "53457d68-e7e5-48b9-bf01-00f730292deb",
+    "openFiles": [
+      "a30ba59a-4fc2-4414-8b55-c985bc6642b0"
+    ],
+    "currentFileId": "a30ba59a-4fc2-4414-8b55-c985bc6642b0",
+    "resources": {
+      "ddbNew": {
+        "name": "ddbNew",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 0,
+          "operation": "query",
+          "table": {
+            "arn": "",
+            "name": "New",
+            "partitionKey": "ID",
+            "partitionKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
+            "mode": 0
+          },
+          "parameters": {
+            "Key": {},
+            "Item": {},
+            "ExpressionAttributeValues": {}
+          },
+          "validator": {
+            "validatableFields": {},
+            "validity": true
+          },
+          "valid": true
+        },
+        "globallyEditable": false
+      },
+      "apigusEast1TestAPIhead": {
+        "name": "apigusEast1TestAPIhead",
+        "type": "API_GATEWAY",
+        "config": {
+          "selectedRegion": "us-east-1",
+          "apiMode": 1,
+          "apiName": "TestAPI",
+          "apiId": "0itznun7w3",
+          "endpointType": "EDGE",
+          "rootResourceId": "h2lelj6j7k",
+          "existingResources": {
+            "/MyLambda": "98nqbj",
+            "/": "h2lelj6j7k",
+            "/testtwospeciallambda": "q4szm3",
+            "/1234": "s8tcca",
+            "/testtwospecialkumutest": "wey3lk"
+          },
+          "resourceMode": 1,
+          "resourcePath": "/",
+          "resourceName": "",
+          "resourceId": "h2lelj6j7k",
+          "restMethod": "HEAD",
+          "proxyIntegration": false,
+          "enableCORS": false,
+          "stageMode": 1,
+          "stageName": "Test",
+          "stageDeploymentId": "c8s6n7"
+        },
+        "globallyEditable": false
+      }
+    },
+    "envVariables": [
+      {
+        "lambdaId": "all",
+        "varKey": "SIGMA_AWS_ACC_ID",
+        "varValue": null,
+        "shouldPersist": false,
+        "displayOnly": false,
+        "editable": false
+      }
+    ],
+    "packageJSON": {
+      "dependencies": {}
+    },
+    "lambdaId": "a30ba59a-4fc2-4414-8b55-c985bc6642b0"
+  },
+  "PROJECT_META": {
+    "projectName": "testdy",
+    "projectDescription": "",
+    "projectVersion": "1.0.0",
+    "projectRegion": "us-east-1",
+    "platform": "AWS",
+    "platformRegions": {},
+    "lastSave": 1546861683262
+  },
+  "VCS_STATE": {
+    "provider": "GitHub",
+    "repo": {
+      "name": "testdy",
+      "url": "https://github.com/Kumudikatest/testdy"
+    }
+  }
+}
