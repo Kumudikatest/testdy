@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "testdy/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New'\n    }).promise().then(function (data) {\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n\n    ddb.query({\n        TableName: 'New'\n    }).promise().then(function (data) {\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n    });\n\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}\n\n\n\n\n",
         "triggers": [
           {
             "resourceName": "apigusEast1TestAPIhead",
@@ -92,17 +92,15 @@
             "name": "New",
             "partitionKey": "ID",
             "partitionKeyType": "N",
-            "hasSortKey": true,
-            "sortKey": "ID",
-            "sortKeyType": "N",
+            "hasSortKey": false,
+            "sortKey": "",
+            "sortKeyType": "S",
             "mode": 0
           },
           "parameters": {
             "Key": {},
             "Item": {},
-            "ExpressionAttributeValues": {},
-            "KeyConditionExpression": "",
-            "FilterExpression": ""
+            "ExpressionAttributeValues": {}
           },
           "validator": {
             "validatableFields": {},
@@ -135,7 +133,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1546863297336
+    "lastSave": 1546863430986
   },
   "VCS_STATE": {
     "provider": "GitHub",
