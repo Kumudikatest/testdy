@@ -22,7 +22,7 @@
         "children": [],
         "isRemovable": true,
         "filePath": "testdy/lambda.js",
-        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.query({\n        TableName: 'New',\n        ExpressionAttributeValues: {\n            ':Name': 'test_name',\n            ':ID': 1\n        }\n    }).promise().then(function (data) {\n        console.log(data);\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n        console.log(err);\n    });\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
+        "code": "let AWS = require('aws-sdk');\nconst ddb = new AWS.DynamoDB.DocumentClient();\n\nexports.handler = function (event, context, callback) {\n    ddb.put({\n        TableName: 'New',\n        Item: { 'ID': 0, 'Name': 'test_name' }\n    }).promise().then(function (data) {\n        //your logic goes here\n    }).catch(function (err) {\n        //handle error\n    });\n\n    callback(null, { \"message\": \"Successfully executed\" });\n}",
         "triggers": [
           {
             "resourceName": "apigusEast1TestAPIhead",
@@ -51,37 +51,6 @@
     ],
     "currentFileId": "a30ba59a-4fc2-4414-8b55-c985bc6642b0",
     "resources": {
-      "ddbNew": {
-        "name": "ddbNew",
-        "type": "DynamoDB",
-        "config": {
-          "mode": 0,
-          "operation": "query",
-          "table": {
-            "arn": "",
-            "name": "New",
-            "partitionKey": "ID",
-            "partitionKeyType": "N",
-            "hasSortKey": false,
-            "sortKey": "",
-            "sortKeyType": "S",
-            "mode": 0
-          },
-          "parameters": {
-            "TableName": "New",
-            "ExpressionAttributeValues": {
-              ":Name": "test_name",
-              ":ID": 1
-            }
-          },
-          "validator": {
-            "validatableFields": {},
-            "validity": true
-          },
-          "valid": true
-        },
-        "globallyEditable": false
-      },
       "apigusEast1TestAPIhead": {
         "name": "apigusEast1TestAPIhead",
         "type": "API_GATEWAY",
@@ -111,6 +80,38 @@
           "stageDeploymentId": "c8s6n7"
         },
         "globallyEditable": false
+      },
+      "ddbNew": {
+        "name": "ddbNew",
+        "type": "DynamoDB",
+        "config": {
+          "mode": 0,
+          "operation": "put",
+          "table": {
+            "arn": "",
+            "name": "New",
+            "partitionKey": "ID",
+            "partitionKeyType": "N",
+            "hasSortKey": true,
+            "sortKey": "ID",
+            "sortKeyType": "N",
+            "mode": 0
+          },
+          "parameters": {
+            "Key": {},
+            "Item": {
+              "ID": 0,
+              "Name": "test_name"
+            },
+            "ExpressionAttributeValues": {}
+          },
+          "validator": {
+            "validatableFields": {},
+            "validity": true
+          },
+          "valid": true
+        },
+        "globallyEditable": false
       }
     },
     "envVariables": [
@@ -135,7 +136,7 @@
     "projectRegion": "us-east-1",
     "platform": "AWS",
     "platformRegions": {},
-    "lastSave": 1546862132037
+    "lastSave": 1546862643174
   },
   "VCS_STATE": {
     "provider": "GitHub",

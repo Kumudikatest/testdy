@@ -2,18 +2,14 @@ let AWS = require('aws-sdk');
 const ddb = new AWS.DynamoDB.DocumentClient();
 
 exports.handler = function (event, context, callback) {
-    ddb.query({
+    ddb.put({
         TableName: 'New',
-        ExpressionAttributeValues: {
-            ':Name': 'test_name',
-            ':ID': 1
-        }
+        Item: { 'ID': 0, 'Name': 'test_name' }
     }).promise().then(function (data) {
-        console.log(data);
         //your logic goes here
     }).catch(function (err) {
         //handle error
-        console.log(err);
     });
+
     callback(null, { "message": "Successfully executed" });
 }
